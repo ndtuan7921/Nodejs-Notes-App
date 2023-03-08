@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-notes-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndtuan7921/Nodejs-Notes-App.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "notes",
+    "app",
+    "mysql"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndtuan7921/Nodejs-Notes-App/issues"
+  },
+  "homepage": "https://github.com/ndtuan7921/Nodejs-Notes-App#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.21"
+  }
+}
