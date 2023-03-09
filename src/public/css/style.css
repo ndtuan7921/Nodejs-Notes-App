@@ -12,7 +12,14 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 0.938rem;
-  counter-reset: li; }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  body .main {
+    margin-top: 2rem;
+    margin-bottom: auto;
+    padding: 0 2rem; }
 
 h1,
 h2,
@@ -104,3 +111,14 @@ main {
     main .main-container .try {
       background-color: #0c0909;
       color: aliceblue; }
+
+.dashboard {
+  width: 100%; }
+  .dashboard .top {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem; }
+    .dashboard .top .add {
+      padding: 0.875rem;
+      border: 1px solid #0c0909;
+      color: #0c0909; }

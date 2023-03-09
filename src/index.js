@@ -2,10 +2,11 @@ const express = require("express");
 const path = require("path");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
-
+const routes = require("../src/routes");
 const app = express();
 const port = 7921;
 
+// Static Files
 app.use(express.static(path.join(__dirname, "public")));
 
 // HTTP logger
@@ -25,11 +26,11 @@ app.engine(
   })
 );
 app.set("view engine", ".hbs");
+
 app.set("views", path.join(__dirname, "./views"));
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
+// Routes init
+routes(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
