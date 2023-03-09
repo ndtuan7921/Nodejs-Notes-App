@@ -1,0 +1,31 @@
+main {
+    width: 100%;
+
+    .main-container {
+        max-width: 75%;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+        padding: 5rem 0;
+
+        .home-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: rgb(12, 9, 9);
+        }
+
+        .home-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .try {
+            background-color: rgb(12, 9, 9);
+            color: aliceblue;
+        }
+    }
+
+
+}

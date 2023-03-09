@@ -1,0 +1,106 @@
+/*=============== BASE ===============*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
+
+html {
+  scroll-behavior: smooth; }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.938rem;
+  counter-reset: li; }
+
+h1,
+h2,
+h3 {
+  line-height: 1.5; }
+
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto; }
+
+.note-btn {
+  padding: 1.25rem;
+  line-height: 1.25;
+  min-width: 272px;
+  color: #0c0909;
+  border-radius: 4px;
+  font-weight: 700; }
+  .note-btn:hover {
+    opacity: 0.5; }
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between; }
+  header .logo {
+    color: #0c0909;
+    font-size: 3rem;
+    font-weight: 900; }
+  header ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 2rem; }
+    header ul li a {
+      font-size: 1.025rem;
+      font-weight: 700;
+      color: #0c0909; }
+      header ul li a:hover {
+        opacity: 0.5; }
+  header .button .signup {
+    background-color: #0c0909;
+    color: aliceblue; }
+
+footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between; }
+  footer p {
+    font-size: 1rem;
+    font-weight: 400; }
+  footer ul {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    justify-content: space-between; }
+    footer ul li a {
+      color: #0c0909;
+      font-size: 1rem;
+      font-weight: 400; }
+
+main {
+  width: 100%; }
+  main .main-container {
+    max-width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 5rem 0; }
+    main .main-container .home-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #0c0909; }
+    main .main-container .home-description {
+      font-size: 1.25rem;
+      margin-bottom: 2rem; }
+    main .main-container .try {
+      background-color: #0c0909;
+      color: aliceblue; }

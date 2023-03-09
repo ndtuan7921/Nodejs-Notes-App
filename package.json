@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/scss/app.scss src/public/css/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,7 +27,8 @@
   "homepage": "https://github.com/ndtuan7921/Nodejs-Notes-App#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.1"
+    "express-handlebars": "^7.0.1",
+    "node-sass": "^8.0.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

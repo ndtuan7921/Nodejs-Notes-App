@@ -1,0 +1,42 @@
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+
+
+    .logo {
+        color: rgb(12, 9, 9);
+        font-size: 3rem;
+        font-weight: 900;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 2rem;
+
+        li {
+            a {
+                font-size: 1.025rem;
+                font-weight: 700;
+                color: rgb(12, 9, 9);
+
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .button {
+        .signup {
+            background-color: rgb(12, 9, 9);
+            color: aliceblue;
+
+
+        }
+    }
+}

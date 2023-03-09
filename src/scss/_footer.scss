@@ -1,0 +1,27 @@
+footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        column-gap: 30px;
+        justify-content: space-between;
+
+        li {
+            a {
+                color: rgb(12, 9, 9);
+                font-size: 1rem;
+                font-weight: 400;
+            }
+        }
+    }
+}
