@@ -4,4 +4,14 @@
         <div><a class="add note-btn" href="/dashboard/add">Add new note</a></div>
 
     </div>
+    <div class="bottom">
+        <ul class="note-list">
+            {{#each result}}
+            <li class="note-item">
+                <h3 class="note-title">{{title}}</h3>
+                <p class="note-content">{{content}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
 </div>

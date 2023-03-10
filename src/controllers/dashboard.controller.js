@@ -1,7 +1,12 @@
+const db = require("../config/db");
 class DashboardController {
   // GET /dashboard
   index(req, res) {
-    res.render("../views/dashboard/dashboard.hbs");
+    // res.render("../views/dashboard/dashboard.hbs");
+    db.query("select * from notes_app.note", (err, result) => {
+      if (err) throw err;
+      res.render("../views/dashboard/dashboard.hbs", { result });
+    });
   }
 
   // GET /dashboard/add

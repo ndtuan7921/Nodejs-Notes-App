@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const handlebars = require("express-handlebars");
 const morgan = require("morgan");
+const db = require("../src/config/db");
 const routes = require("../src/routes");
 const app = express();
 const port = 7921;
@@ -32,6 +33,10 @@ app.set("views", path.join(__dirname, "./views"));
 // Routes init
 routes(app);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+db.connect(function (err) {
+  if (err) throw err;
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+  console.log("Connected!!!");
 });
