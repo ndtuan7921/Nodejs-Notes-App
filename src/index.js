@@ -7,6 +7,10 @@ const routes = require("../src/routes");
 const app = express();
 const port = 7921;
 
+// Body-parser
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Static Files
 app.use(express.static(path.join(__dirname, "public")));
 

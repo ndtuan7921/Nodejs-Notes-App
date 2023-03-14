@@ -5,13 +5,13 @@
 
     </div>
     <div class="bottom">
-        <ul class="note-list">
+        <div class="note-list">
             {{#each result}}
-            <li class="note-item">
+            <a href="/note/:slug" class="note-item">
                 <h3 class="note-title">{{title}}</h3>
                 <p class="note-content">{{content}}</p>
-            </li>
+            </a>
             {{/each}}
-        </ul>
+        </div>
     </div>
 </div>

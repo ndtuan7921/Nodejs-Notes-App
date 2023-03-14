@@ -5,12 +5,38 @@
         display: flex;
         align-items: center;
         column-gap: 2rem;
+        margin-bottom: 2rem;
 
         .add {
             // border-radius: 50%;
             padding: 0.875rem;
             border: 1px solid rgb(12, 9, 9);
             color: rgb(12, 9, 9);
+        }
+    }
+
+    .bottom {
+        .note-list {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(4, 1fr);
+
+            .note-item {
+                height: 350px;
+                padding: 1rem;
+                border: 1px solid red;
+
+                .note-title {
+                    font-size: 24px;
+                    color: rgb(12, 9, 9);
+                    margin-bottom: 8px;
+                }
+
+                .note-content {
+                    font-size: 17px;
+                    color: slategray;
+                }
+            }
         }
     }
 

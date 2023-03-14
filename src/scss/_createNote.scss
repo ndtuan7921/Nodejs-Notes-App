@@ -1,0 +1,52 @@
+.add-note {
+    width: 100%;
+
+    .top {
+        display: flex;
+        align-items: center;
+        column-gap: 2rem;
+        margin-bottom: 2rem;
+        justify-content: space-between;
+
+        .delete {
+            padding: 0.875rem;
+            background-color: rgb(251, 88, 88);
+        }
+    }
+
+    .bottom {
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            align-items: flex-start;
+
+            input,
+            textarea {
+                width: 100%;
+                font-size: 15px;
+                padding: 5px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            input {
+                height: 2.75rem;
+                font-size: 22px;
+                font-weight: 700;
+            }
+
+            .add {
+
+                padding: 0.875rem;
+                background-color: rgb(12, 9, 9);
+                color: aliceblue;
+            }
+        }
+
+    }
+
+}

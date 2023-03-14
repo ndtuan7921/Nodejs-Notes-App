@@ -1,1 +1,14 @@
-<h1>create</h1>
+<div class="add-note">
+    <div class="top">
+        <h1 class="title">Create note</h1>
+        <div><a class="delete note-btn" href="/dashboard/add">Delete</a></div>
+
+    </div>
+    <div class="bottom">
+        <form action="/dashboard/store" method="POST">
+            <input type="text" class="" id="title" name="title" placeholder="Title" required>
+            <textarea class="" id="content" name="content" placeholder="Take a note..." rows="12" required></textarea>
+            <button type="submit" class="add note-btn">Add Note</button>
+        </form>
+    </div>
+</div>

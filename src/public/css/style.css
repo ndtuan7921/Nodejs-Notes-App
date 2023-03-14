@@ -43,7 +43,8 @@ img {
   min-width: 272px;
   color: #0c0909;
   border-radius: 4px;
-  font-weight: 700; }
+  font-weight: 700;
+  cursor: pointer; }
   .note-btn:hover {
     opacity: 0.5; }
 
@@ -117,8 +118,58 @@ main {
   .dashboard .top {
     display: flex;
     align-items: center;
-    column-gap: 2rem; }
+    column-gap: 2rem;
+    margin-bottom: 2rem; }
     .dashboard .top .add {
       padding: 0.875rem;
       border: 1px solid #0c0909;
       color: #0c0909; }
+  .dashboard .bottom .note-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr); }
+    .dashboard .bottom .note-list .note-item {
+      height: 350px;
+      padding: 1rem;
+      border: 1px solid red; }
+      .dashboard .bottom .note-list .note-item .note-title {
+        font-size: 24px;
+        color: #0c0909;
+        margin-bottom: 8px; }
+      .dashboard .bottom .note-list .note-item .note-content {
+        font-size: 17px;
+        color: slategray; }
+
+.add-note {
+  width: 100%; }
+  .add-note .top {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+    margin-bottom: 2rem;
+    justify-content: space-between; }
+    .add-note .top .delete {
+      padding: 0.875rem;
+      background-color: #fb5858; }
+  .add-note .bottom form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: flex-start; }
+    .add-note .bottom form input,
+    .add-note .bottom form textarea {
+      width: 100%;
+      font-size: 15px;
+      padding: 5px; }
+      .add-note .bottom form input:focus,
+      .add-note .bottom form textarea:focus {
+        outline: none; }
+    .add-note .bottom form input {
+      height: 2.75rem;
+      font-size: 22px;
+      font-weight: 700; }
+    .add-note .bottom form .add {
+      padding: 0.875rem;
+      background-color: #0c0909;
+      color: aliceblue; }
