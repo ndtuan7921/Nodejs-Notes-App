@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const { v4: uuidv4 } = require("uuid");
 class DashboardController {
   // GET /dashboard
   index(req, res) {
@@ -15,8 +16,10 @@ class DashboardController {
 
   // POST /dashboard/store
   store(req, res) {
+    const idnote = uuidv4();
+    const createdAt = new Date().toISOString().slice(0, 19).replace("T", " ");
     db.query(
-      `INSERT INTO note (title, content) VALUES ('${req.body.title}', '${req.body.content}')`,
+      `INSERT INTO note (idnote, title, content, createdAt) VALUES ('${idnote}','${req.body.title}', '${req.body.content}','${createdAt}')`,
       (err, result) => {
         if (err) throw err;
         res.redirect("/dashboard");

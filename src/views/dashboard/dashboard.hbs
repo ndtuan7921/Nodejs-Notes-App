@@ -8,8 +8,13 @@
         <div class="note-list">
             {{#each result}}
             <a href="/note/:slug" class="note-item">
-                <h3 class="note-title">{{title}}</h3>
-                <p class="note-content">{{content}}</p>
+                <div class="note-detail">
+                    <h3 class="note-title">{{title}}</h3>
+                    <p class="note-content">{{content}}</p>
+                </div>
+                <div class="note-createdAt">
+                    <p>{{createdAt}}</p>
+                </div>
             </a>
             {{/each}}
         </div>

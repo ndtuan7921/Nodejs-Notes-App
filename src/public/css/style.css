@@ -131,14 +131,18 @@ main {
     .dashboard .bottom .note-list .note-item {
       height: 350px;
       padding: 1rem;
-      border: 1px solid red; }
-      .dashboard .bottom .note-list .note-item .note-title {
+      border: 1px solid red;
+      display: flex;
+      flex-direction: column; }
+      .dashboard .bottom .note-list .note-item .note-detail .note-title {
         font-size: 24px;
         color: #0c0909;
         margin-bottom: 8px; }
-      .dashboard .bottom .note-list .note-item .note-content {
+      .dashboard .bottom .note-list .note-item .note-detail .note-content {
         font-size: 17px;
         color: slategray; }
+      .dashboard .bottom .note-list .note-item .note-createdAt {
+        margin-top: auto; }
 
 .add-note {
   width: 100%; }
