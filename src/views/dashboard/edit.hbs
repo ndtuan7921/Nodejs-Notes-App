@@ -1,7 +1,10 @@
 <div class="add-note">
     <div class="top">
         <h1 class="title">Update note</h1>
-        <div><a class="delete note-btn" href="#">Delete</a></div>
+        <div><a class="delete note-btn" href="/note/delete/{{idnote}}">Delete</a></div>
+        {{!-- <form action="/note/delete/{{idnote}}/?_method=DELETE" method="POST">
+            <button type="submit" class="add note-btn">Delete</button>
+        </form> --}}
 
     </div>
     <div class="bottom">

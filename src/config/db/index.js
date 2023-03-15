@@ -5,6 +5,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "tuan*7*921",
   database: "notes_app",
+  dateStrings: true,
 });
 
 module.exports = db;

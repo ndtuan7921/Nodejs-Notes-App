@@ -25,6 +25,17 @@ class NoteController {
       }
     );
   }
+  // DELETE /:id
+  delete(req, res) {
+    const idnote = req.params.id;
+    db.query(
+      `DELETE FROM NOTES_APP.NOTE WHERE idnote = '${idnote}'`,
+      (err, result) => {
+        if (err) throw err;
+        res.redirect("/dashboard");
+      }
+    );
+  }
 
   // UPDATE
   update(req, res) {

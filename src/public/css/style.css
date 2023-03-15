@@ -154,6 +154,7 @@ main {
     justify-content: space-between; }
     .add-note .top .delete {
       padding: 0.875rem;
+      color: #fff;
       background-color: #fb5858; }
   .add-note .bottom form {
     width: 100%;
