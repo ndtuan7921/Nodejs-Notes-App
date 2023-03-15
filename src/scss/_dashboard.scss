@@ -15,16 +15,28 @@
         }
     }
 
+    form {
+        margin-bottom: 2rem;
+
+        input {
+            width: 100%;
+            border: 2px solid rgb(12, 9, 9);
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 1.25rem;
+        }
+    }
+
     .bottom {
         .note-list {
             display: grid;
             gap: 1rem;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 
             .note-item {
                 height: 350px;
                 padding: 1rem;
-                border: 1px solid red;
+                border: 3px solid rgb(12, 9, 9);
                 display: flex;
                 flex-direction: column;
 
@@ -32,16 +44,18 @@
                     .note-title {
                         font-size: 24px;
                         color: rgb(12, 9, 9);
-                        margin-bottom: 8px;
+                        margin-bottom: 1rem;
                     }
 
                     .note-content {
                         font-size: 17px;
                         color: slategray;
+                        white-space: pre-wrap;
                     }
                 }
 
                 .note-createdAt {
+                    color: rgb(12, 9, 9);
                     margin-top: auto
                 }
             }

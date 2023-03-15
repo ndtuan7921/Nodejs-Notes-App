@@ -1,9 +1,12 @@
 <div class="dashboard">
     <div class="top">
-        <h1 class="title">HEY Dau Cak</h1>
+        <h1 class="title">HEY tuanrider</h1>
         <div><a class="add note-btn" href="/dashboard/add">Add new note</a></div>
 
     </div>
+    <form class="" role="search" method="POST" action="/dashboard/search">
+        <input type="search" name="searchTerm" class="" placeholder="Search..." aria-label="Search">
+    </form>
     <div class="bottom">
         <div class="note-list">
             {{#each result}}
