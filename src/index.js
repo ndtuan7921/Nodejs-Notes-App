@@ -1,11 +1,15 @@
 const express = require("express");
 const path = require("path");
 const handlebars = require("express-handlebars");
+const methodOverride = require("method-override");
 const morgan = require("morgan");
 const db = require("../src/config/db");
 const routes = require("../src/routes");
 const app = express();
 const port = 7921;
+
+// override with POST having ?_method=PUT
+app.use(methodOverride("_method"));
 
 // Body-parser
 app.use(express.urlencoded({ extended: true }));

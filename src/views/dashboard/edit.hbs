@@ -1,0 +1,14 @@
+<div class="add-note">
+    <div class="top">
+        <h1 class="title">Update note</h1>
+        <div><a class="delete note-btn" href="#">Delete</a></div>
+
+    </div>
+    <div class="bottom">
+        <form action="/note/{{idnote}}/?_method=PUT" method="POST">
+            <input type="text" class="" id="title" name="title" value="{{title}}" required>
+            <textarea class="" id="content" name="content" rows="12" required>{{content}}</textarea>
+            <button type="submit" class="add note-btn">Update</button>
+        </form>
+    </div>
+</div>
