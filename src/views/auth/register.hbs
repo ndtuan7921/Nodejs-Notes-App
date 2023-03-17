@@ -1,0 +1,35 @@
+<form action="/auth/create" method="POST">
+    <div class="container">
+        <h1>Register Here</h1>
+        <hr>
+        <label for="email"><b>Enter Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email">
+        {{#with email}}
+        {{#if isError}}
+        <p class="error">{{message}}</p>
+        {{/if}}
+        {{/with}}
+        {{!-- <p class="error email dkh-form-field__messages"></p> --}}
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password">
+        {{#with password}}
+        {{#if isError}}
+        <p class="error">{{message}}</p>
+        {{/if}}
+        {{/with}}
+
+        <label for="confirm"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="confirm">
+        {{#with confirm}}
+        {{#if isError}}
+        <p class="error">{{message}}</p>
+        {{/if}}
+        {{/with}}
+
+        <button type="submit" class="registerbtn"><strong>Register</strong></button>
+    </div>
+    <div class="container signin">
+        <p>Already have an account? <a href="/auth/login">Sign in</a></p>
+    </div>
+</form>
