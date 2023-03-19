@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ndtuan7921/Nodejs-Notes-App#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.1",
     "method-override": "^3.0.0",

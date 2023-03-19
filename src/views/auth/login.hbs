@@ -1,0 +1,21 @@
+<form action="/auth/loginUser" method="POST">
+    <div class="container">
+        <h1>Sign in Here</h1>
+        <hr>
+        <label for="email"><b>Enter Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email">
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password">
+
+        <button type="submit" class="registerbtn"><strong>Sign in</strong></button>
+    </div>
+    <div class="container signin">
+        <p>Already have an account? <a href="/auth/register">Register</a></p>
+    </div>
+
+    {{#if message}}
+    <p class="error">{{message}}</p>
+    {{/if}}
+
+</form>

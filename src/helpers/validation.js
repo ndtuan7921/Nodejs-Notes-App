@@ -13,7 +13,8 @@ const validatePassword = (password) => {
   if (!password) return "Password is required";
 
   const passw = /^[A-Za-z]\w{7,14}$/;
-  if (!passw.test(password)) return "Password is invalid";
+  if (!passw.test(password))
+    return "Password should be more than 7 character and has at least one uppercase letter";
 
   return "";
 };

@@ -37,6 +37,10 @@ img {
   max-width: 100%;
   height: auto; }
 
+.error {
+  color: #dc143c;
+  margin-top: 0.75rem; }
+
 .note-btn {
   padding: 1.25rem;
   line-height: 1.25;
@@ -201,9 +205,6 @@ form {
     form .container label {
       padding: 12px 0;
       display: inline-block; }
-    form .container .error {
-      color: #dc143c;
-      margin-top: 0.75rem; }
     form .container input {
       width: 100%;
       padding: 12px;
