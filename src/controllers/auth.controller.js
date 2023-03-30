@@ -1,6 +1,7 @@
-const db = require("../config/db");
+const db = require("../config/database");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const {
   validateEmail,
   validatePassword,
@@ -70,17 +71,24 @@ class AuthController {
           });
         } else {
           const validPassword = await bcrypt.compare(
-            result[0].password,
-            password
+            password,
+            result[0].password
           );
           if (!validPassword) {
             res.render("../views/auth/login.hbs", {
               message: "Wrong password",
             });
           }
-          res.render("../views/dashboard/dashboard.hbs", {
-            username: result[0].username,
+          const accessToken = jwt.sign({ id: result[0].userID }, "privateKey", {
+            expiresIn: "1d",
           });
+          res.cookie("access_token", accessToken, {
+            httpOnly: true,
+            // secure: process.env.NODE_ENV === "production",
+          });
+
+          return res.redirect("back");
+          // res.json({ username: result[0].username, accessToken });
         }
       }
     );

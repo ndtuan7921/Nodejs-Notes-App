@@ -1,4 +1,7 @@
 <div class="dashboard">
+    {{#if accessToken}}
+    <p>{{accessToken}}</p>
+    {{/if}}
     <div class="top">
         <h1 class="title">HEY {{username}}</h1>
         <div><a class="add note-btn" href="/dashboard/add">Add new note</a></div>

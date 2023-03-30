@@ -1,5 +1,5 @@
 class SiteController {
-  // GET /dashboard
+  // GET /dashboard/about
   about(req, res) {
     res.render("../views/about.hbs");
   }

@@ -3,11 +3,16 @@ const path = require("path");
 const handlebars = require("express-handlebars");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
-const db = require("../src/config/db");
+const cookieParser = require("cookie-parser");
+const db = require("./config/database");
+const passport = require("passport");
+const initializePassport = require("../src/config/passport");
 const routes = require("../src/routes");
-
+require("dotenv").config();
 const app = express();
-const port = 7921;
+const port = process.env.PORT;
+
+app.use(cookieParser());
 
 // override with POST having ?_method=PUT
 app.use(methodOverride("_method"));
@@ -41,7 +46,6 @@ app.set("views", path.join(__dirname, "./views"));
 
 // Routes init
 routes(app);
-
 db.connect(function (err) {
   if (err) throw err;
   app.listen(port, () => {
