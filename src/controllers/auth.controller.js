@@ -1,5 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const {
   validateEmail,
   validatePassword,
@@ -7,40 +8,6 @@ const {
 } = require("../helpers/validation");
 const { createUser, getUserByEmail } = require("../database/user");
 class AuthController {
-  // // POST /auth/loginUser
-  // loginUser(req, res) {
-  //   const { email, password } = req.body;
-  //   db.query(
-  //     `SELECT * FROM notes_app.users WHERE email = '${email}'`,
-  //     async (err, result) => {
-  //       if (err) throw err;
-  //       if (result.length == 0) {
-  //         res.render("../views/auth/login.hbs", {
-  //           message: "Email doesn't exit",
-  //         });
-  //       } else {
-  //         const validPassword = await bcrypt.compare(
-  //           password,
-  //           result[0].password
-  //         );
-  //         if (!validPassword) {
-  //           res.render("../views/auth/login.hbs", {
-  //             message: "Wrong password",
-  //           });
-  //         }
-  //         const accessToken = jwt.sign({ id: result[0].userID }, "privateKey", {
-  //           expiresIn: "1d",
-  //         });
-  //         res.cookie("access_token", accessToken, {
-  //           httpOnly: true,
-  //           // secure: process.env.NODE_ENV === "production",
-  //         });
-  //         return res.redirect("back");
-  //         // res.json({ username: result[0].username, accessToken });
-  //       }
-  //     }
-  //   );
-  // }
   register_get(req, res) {
     res.render("../views/auth/register.hbs");
   }
@@ -95,8 +62,48 @@ class AuthController {
   login_get(req, res) {
     res.render("../views/auth/login.hbs");
   }
-  login_post(req, res) {
-    res.send("hello from register");
+  async login_post(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      // Check if user exists
+      const checkUser = await getUserByEmail(email);
+      if (checkUser.length == 0) {
+        return res.render("../views/auth/login.hbs", {
+          message: "Email doesn't exit",
+        });
+      }
+
+      // Check if password is correct
+      const passwordMatch = await bcrypt.compare(
+        password,
+        checkUser[0].password
+      );
+      if (!passwordMatch) {
+        return res.render("../views/auth/login.hbs", {
+          message: "Wrong password",
+        });
+      }
+      // Generate JWT token
+      const accessToken = jwt.sign(
+        { id: checkUser[0].userID },
+        process.env.PRIVATE_KEY,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      res
+        .cookie("access_token", accessToken, {
+          httpOnly: true,
+        })
+        .redirect("/dashboard");
+    } catch (error) {
+      // Display an error message to the user
+      res.render("../views/auth/login.hbs", {
+        message: "An error occurred during login, please try again.",
+      });
+    }
   }
 }
 
