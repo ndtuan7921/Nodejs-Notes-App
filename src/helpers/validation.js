@@ -1,12 +1,20 @@
-const validateEmail = (email) => {
-  if (!email) return "Email is required";
+const { getUserByEmail } = require("../database/user");
+
+const validateEmail = async (email) => {
+  let result = "";
+  if (!email) result = "Email is required";
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (!re.test(String(email).toLowerCase()))
-    return "Please enter a valid email";
+    result = "Please enter a valid email";
 
-  return "";
+  await getUserByEmail(email).then((data) => {
+    if (data.length > 0) {
+      result = "Email already in use";
+    }
+  });
+  return result;
 };
 
 const validatePassword = (password) => {
