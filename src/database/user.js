@@ -30,34 +30,17 @@ const getUserByEmail = async (email) => {
     });
   });
 };
-module.exports = { createUser, getUserByEmail };
 
-// module.exports = getUsers = () => {
-//   db.query("select * from notes_app.users", (error, result) => {
-//     if (error) return error;
-//     return result;
-//   });
-// };
-
-// module.exports = getUserByEmail = (email) => {
-//   db.query(
-//     `SELECT * FROM note_app.users WHERE email = '${email}'`,
-//     (error, result) => {
-//       if (error) return error;
-//       return result;
-//     }
-//   );
-// };
-
-// module.exports = getUserByID = (id) => {
-//   db.query(
-//     `SELECT * FROM note_app.users WHERE userID = '${id}'`,
-//     (error, result) => {
-//       if (error) return error;
-//       return result;
-//     }
-//   );
-// };
+const getUserByID = async (id) => {
+  const SQL = `SELECT * FROM notes_app.users WHERE userID = '${id}'`;
+  return new Promise((resolve, reject) => {
+    db.query(SQL, (err, result) => {
+      err && reject(new Error(err));
+      resolve(result);
+    });
+  });
+};
+module.exports = { createUser, getUserByEmail, getUserByID };
 
 // module.exports = validatePassword = async (email, password) => {
 //   const user = getUserByEmail(email);

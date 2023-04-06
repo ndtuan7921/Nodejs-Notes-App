@@ -1,17 +1,21 @@
 <div class="add-note">
     <div class="top">
-        <h1 class="title">Update note</h1>
-        <div><a class="delete note-btn" href="/note/delete/{{idnote}}">Delete</a></div>
+        <h1 class="title">Edit note</h1>
+        <div><a class="delete note-btn" href="">Delete</a></div>
         {{!-- <form action="/note/delete/{{idnote}}/?_method=DELETE" method="POST">
             <button type="submit" class="add note-btn">Delete</button>
         </form> --}}
 
     </div>
     <div class="bottom">
-        <form action="/note/{{idnote}}/?_method=PUT" method="POST">
+        <form action="/note/{{noteID}}/edit/?_method=PUT" method="POST">
             <input type="text" class="" id="title" name="title" value="{{title}}" required>
-            <textarea class="" id="content" name="content" rows="12" required>{{content}}</textarea>
+            <textarea class="" id="text" name="text" rows="12" required>{{text}}</textarea>
             <button type="submit" class="add note-btn">Update</button>
+
+            {{#if message}}
+            <p class="error">{{message}}</p>
+            {{/if}}
         </form>
     </div>
 </div>

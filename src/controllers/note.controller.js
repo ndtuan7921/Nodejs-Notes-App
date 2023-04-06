@@ -1,59 +1,41 @@
 const db = require("../config/database");
 const { v4: uuidv4 } = require("uuid");
+const { getNoteById, updateNote } = require("../database/note");
 class NoteController {
-  // POST /note/store
-  store(req, res) {
-    const idnote = uuidv4();
-    const createdAt = new Date().toISOString().slice(0, 19).replace("T", " ");
-    db.query(
-      `INSERT INTO note (idnote, title, content, createdAt) VALUES ('${idnote}','${req.body.title}', '${req.body.content}','${createdAt}')`,
-      (err, result) => {
-        if (err) throw err;
-        res.redirect("/dashboard");
-      }
-    );
+  async edit_get(req, res) {
+    const noteID = req.params.id;
+    try {
+      const note = await getNoteById(noteID);
+      if (note.length > 0) {
+        res.render("../views/dashboard/edit.hbs", note[0]);
+      } else res.send("This note is not available");
+    } catch (error) {
+      res.send(error);
+    }
   }
-
-  // GET /:id/edit
-  edit(req, res) {
-    const idnote = req.params.id;
-    db.query(
-      `SELECT * FROM NOTES_APP.NOTE WHERE idnote = '${idnote}'`,
-      (err, result) => {
-        if (err) throw err;
-        res.render("../views/dashboard/edit.hbs", result[0]);
-      }
-    );
+  async edit_put(req, res) {
+    const { title, text } = req.body;
+    const noteID = req.params.id;
+    try {
+      await updateNote(noteID, title, text);
+      res.redirect("/dashboard");
+    } catch (error) {
+      res.render("../views/dashboard/edit.hbs", {
+        message: "An error occurred while updating the note",
+      });
+    }
   }
-  // DELETE /:id
-  delete(req, res) {
-    const idnote = req.params.id;
-    db.query(
-      `DELETE FROM NOTES_APP.NOTE WHERE idnote = '${idnote}'`,
-      (err, result) => {
-        if (err) throw err;
-        res.redirect("/dashboard");
-      }
-    );
-  }
-
-  // UPDATE
-  update(req, res) {
-    const idnote = req.params.id;
-    const newTitle = req.body.title;
-    const newContent = req.body.content;
-    const updatedAt = new Date().toISOString().slice(0, 19).replace("T", " ");
-    db.query(
-      `UPDATE NOTES_APP.NOTE SET
-      title='${newTitle}',
-      content='${newContent}',
-      createdAt='${updatedAt}' WHERE idnote='${idnote}';`,
-      (err, result) => {
-        if (err) throw err;
-        res.redirect("/dashboard");
-      }
-    );
-  }
+  // // DELETE /:id
+  // delete(req, res) {
+  //   const idnote = req.params.id;
+  //   db.query(
+  //     `DELETE FROM NOTES_APP.NOTE WHERE idnote = '${idnote}'`,
+  //     (err, result) => {
+  //       if (err) throw err;
+  //       res.redirect("/dashboard");
+  //     }
+  //   );
+  // }
 }
 
 module.exports = new NoteController();

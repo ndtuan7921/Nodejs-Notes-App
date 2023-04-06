@@ -1,10 +1,10 @@
 <div class="dashboard">
-    {{#if accessToken}}
+    {{!-- {{#if accessToken}}
     <p>{{accessToken}}</p>
-    {{/if}}
+    {{/if}} --}}
     <div class="top">
-        <h1 class="title">HEY {{username}}</h1>
-        <div><a class="add note-btn" href="/dashboard/add">Add new note</a></div>
+        {{!-- <h1 class="title">HEY {{username}}</h1> --}}
+        <div><a class="add note-btn" href="/dashboard/create">Add new note</a></div>
 
     </div>
     <form class="" role="search" method="POST" action="/dashboard/search">
@@ -12,11 +12,15 @@
     </form>
     <div class="bottom">
         <div class="note-list">
+            {{#if message}}
+            <p class="error">{{message}}</p>
+            {{/if}}
+
             {{#each result}}
-            <a href="/note/{{idnote}}/edit" class="note-item">
+            <a href="/note/{{noteID}}/edit" class="note-item">
                 <div class="note-detail">
                     <h3 class="note-title">{{title}}</h3>
-                    <p class="note-content">{{content}}</p>
+                    <p class="note-content">{{text}}</p>
                 </div>
                 <div class="note-createdAt">
                     <p>{{createdAt}}</p>
