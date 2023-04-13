@@ -1,6 +1,6 @@
 const db = require("../config/database");
 const { v4: uuidv4 } = require("uuid");
-const { getNoteById, updateNote } = require("../database/note");
+const { getNoteById, updateNote, deleteNote } = require("../database/note");
 class NoteController {
   async edit_get(req, res) {
     const noteID = req.params.id;
@@ -25,17 +25,19 @@ class NoteController {
       });
     }
   }
-  // // DELETE /:id
-  // delete(req, res) {
-  //   const idnote = req.params.id;
-  //   db.query(
-  //     `DELETE FROM NOTES_APP.NOTE WHERE idnote = '${idnote}'`,
-  //     (err, result) => {
-  //       if (err) throw err;
-  //       res.redirect("/dashboard");
-  //     }
-  //   );
-  // }
+
+  async delete(req, res) {
+    // console.log(req.params);
+    const noteID = req.params.id;
+    try {
+      await deleteNote(noteID);
+      res.redirect("/dashboard");
+    } catch (error) {
+      res.render("../views/dashboard/edit.hbs", {
+        message: "An error occurred while deleting the note",
+      });
+    }
+  }
 }
 
 module.exports = new NoteController();

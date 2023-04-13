@@ -54,4 +54,31 @@ const updateNote = async (noteID, title, text) => {
   });
 };
 
-module.exports = { getNotesByUserId, getNoteById, createNote, updateNote };
+const deleteNote = async (noteID) => {
+  const SQL = `DELETE FROM notes_app.notes WHERE noteID = '${noteID}'`;
+  return new Promise((resolve, reject) => {
+    db.query(SQL, (err, result) => {
+      err && reject(new Error(err));
+      resolve("Delete note successfully");
+    });
+  });
+};
+
+const searchNoteByTitle = async (query, userID) => {
+  const SQL = `SELECT * FROM notes_app.notes WHERE title LIKE '%${query}%' AND userID = '${userID}'`;
+  return new Promise((resolve, reject) => {
+    db.query(SQL, (err, result) => {
+      err && reject(new Error(err));
+      resolve(result);
+    });
+  });
+};
+
+module.exports = {
+  getNotesByUserId,
+  getNoteById,
+  createNote,
+  updateNote,
+  deleteNote,
+  searchNoteByTitle,
+};

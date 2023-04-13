@@ -5,8 +5,6 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const db = require("./config/database");
-const passport = require("passport");
-const initializePassport = require("../src/config/passport");
 const routes = require("../src/routes");
 require("dotenv").config();
 const app = express();
@@ -32,7 +30,7 @@ app.engine(
   ".hbs",
   handlebars.engine({
     extname: ".hbs",
-    // defaultLayout: "base",
+    defaultLayout: "guest",
     layoutsDir: path.join(__dirname, "./views/layouts"),
     partialsDir: [
       //  path to your partials

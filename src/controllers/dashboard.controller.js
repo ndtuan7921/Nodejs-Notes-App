@@ -1,19 +1,25 @@
 const db = require("../config/database");
-const { getNotesByUserId, createNote } = require("../database/note");
+const {
+  getNotesByUserId,
+  createNote,
+  searchNoteByTitle,
+} = require("../database/note");
 
 class DashboardController {
   // GET /dashboard
   async index(req, res) {
-    // console.log(req);
     try {
       const userID = req.userID;
       const notes = await getNotesByUserId(userID);
-      // console.log(notes);
       if (notes.length > 0) {
-        res.render("../views/dashboard/dashboard.hbs", { result: notes });
+        res.render("../views/dashboard/dashboard.hbs", {
+          result: notes,
+          layout: "main",
+        });
       } else {
         res.render("../views/dashboard/dashboard.hbs", {
           message: "You haven't created any notes yet!",
+          layout: "main",
         });
       }
     } catch (error) {
@@ -21,27 +27,34 @@ class DashboardController {
     }
   }
 
-  // // POST /dashboard/search
-  // search(req, res) {
-  //   // console.log(req);
-  //   const query = req.body.searchTerm;
-  //   db.query(
-  //     `SELECT * FROM NOTES_APP.NOTE WHERE title LIKE '%${query}%'`,
-  //     (err, result) => {
-  //       if (err) throw err;
-  //       // console.log(result);
-  //       res.render("../views/dashboard/dashboard.hbs", { result });
-  //     }
-  //   );
-  // }
+  // POST /dashboard/search
+  async search(req, res) {
+    try {
+      const query = req.body.searchTerm;
+      const userID = req.userID;
+      const notes = await searchNoteByTitle(query, userID);
+      if (notes.length > 0) {
+        res.render("../views/dashboard/dashboard.hbs", {
+          result: notes,
+          layout: "main",
+        });
+      } else {
+        res.render("../views/dashboard/dashboard.hbs", {
+          message: "No results found",
+          layout: "main",
+        });
+      }
+    } catch (error) {
+      res.send(error);
+    }
+  }
 
   // GET
   create_get(req, res) {
-    res.render("../views/dashboard/create.hbs");
+    res.render("../views/dashboard/create.hbs", { layout: "main" });
   }
 
   create_post(req, res) {
-    // console.log(req);
     try {
       const { title, text } = req.body;
       const newNode = {

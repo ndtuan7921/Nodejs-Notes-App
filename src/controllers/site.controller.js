@@ -1,12 +1,20 @@
 class SiteController {
-  // GET /dashboard/about
   about(req, res) {
-    res.render("../views/about.hbs");
+    if (req.cookies.access_token) {
+      res.render("../views/about.hbs", { layout: "main" });
+    } else res.render("../views/about.hbs");
   }
 
-  // GET /dashboard/add
+  notFound(req, res) {
+    if (req.cookies.access_token) {
+      res.render("../views/404.hbs", { layout: "main" });
+    } else res.render("../views/404.hbs");
+  }
+
   index(req, res) {
-    res.render("../views/home.hbs");
+    if (req.cookies.access_token) {
+      res.render("../views/home.hbs", { layout: "main" });
+    } else res.render("../views/home.hbs");
   }
 }
 
