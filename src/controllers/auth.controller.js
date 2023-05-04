@@ -7,10 +7,12 @@ const {
   validateConfirm,
 } = require("../helpers/validation");
 const { createUser, getUserByEmail } = require("../database/user");
+
 class AuthController {
   register_get(req, res) {
     res.render("../views/auth/register.hbs");
   }
+
   async register_post(req, res) {
     try {
       const { email, password, confirm } = req.body;
@@ -44,8 +46,8 @@ class AuthController {
       createUser(email, password)
         .then((result) => {
           console.log(result);
-          return jwt.sign({ id: result.userID }, process.env.PRIVATE_KEY, {
-            expiresIn: "1h",
+          return jwt.sign({ id: result.userID }, process.env.JWT_ACCESS_KEY, {
+            expiresIn: "10s",
           });
         })
         .then((accessToken) => {
@@ -59,9 +61,11 @@ class AuthController {
       res.send(error);
     }
   }
+
   login_get(req, res) {
     res.render("../views/auth/login.hbs");
   }
+
   async login_post(req, res) {
     try {
       const { email, password } = req.body;
@@ -84,14 +88,28 @@ class AuthController {
           message: "Wrong password",
         });
       }
-      // Generate JWT token
+
       const accessToken = jwt.sign(
         { id: checkUser[0].userID },
-        process.env.PRIVATE_KEY,
-        {
-          expiresIn: "1h",
-        }
+        process.env.JWT_ACCESS_KEY,
+        { expiresIn: "30m" }
       );
+
+      // const refreshToken = jwt.sign(
+      //   { id: checkUser[0].userID },
+      //   process.env.JWT_REFRESH_KEY,
+      //   { expiresIn: "1d" }
+      // );
+
+      // refreshTokensArray.push(refreshToken);
+
+      //STORE REFRESH TOKEN IN COOKIE
+      // res.cookie("refreshToken", refreshToken, {
+      //   httpOnly: true,
+      //   secure: false,
+      //   path: "/",
+      //   sameSite: "strict",
+      // });
 
       res
         .cookie("access_token", accessToken, {

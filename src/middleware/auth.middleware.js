@@ -7,9 +7,42 @@ const authMiddleware = {
     const token = req.cookies.access_token;
 
     try {
-      const data = jwt.verify(token, process.env.PRIVATE_KEY); // data: {id, iat, exp}
-      req.userID = data.id;
-      next();
+      // data: {id, iat, exp}
+      jwt.verify(
+        token,
+        process.env.JWT_ACCESS_KEY,
+        (error, { id, iat, exp }) => {
+          console.log({ id, iat, exp });
+          if (error) {
+            // Token is invalid or expired
+            return res.sendStatus(403);
+          }
+
+          req.userID = id;
+
+          // Check if the token is about to expire
+          const currentTime = Math.floor(Date.now() / 1000);
+          const tokenExpiration = exp;
+          const expirationThreshold = 300; // 5min
+
+          if (tokenExpiration - currentTime <= expirationThreshold) {
+            // Generate a new access token
+            const newAccessToken = jwt.sign(
+              { id },
+              process.env.JWT_ACCESS_KEY,
+              {
+                expiresIn: "30m",
+              }
+            );
+
+            // Send the new access token in the response headers
+            res.cookie("access_token", newAccessToken, {
+              httpOnly: true,
+            });
+          }
+          next();
+        }
+      );
     } catch (error) {
       res.clearCookie("access_token");
       return res.redirect("/login");
