@@ -33,7 +33,16 @@ header {
     }
 
     .button {
-        .signup .logout {
+        .signup {
+            background-color: rgb(12, 9, 9);
+            color: aliceblue;
+        }
+    }
+
+    .logoutform {
+        all: unset;
+
+        .logout {
             background-color: rgb(12, 9, 9);
             color: aliceblue;
         }

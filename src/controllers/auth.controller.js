@@ -123,6 +123,15 @@ class AuthController {
       });
     }
   }
+
+  logout_post(req, res) {
+    const token = req.cookies.access_token;
+    if (!token) {
+      res.redirect("/login");
+    }
+    res.clearCookie("access_token");
+    res.redirect("/dashboard");
+  }
 }
 
 module.exports = new AuthController();

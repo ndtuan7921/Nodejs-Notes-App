@@ -44,7 +44,7 @@ img {
 .note-btn {
   padding: 1.25rem;
   line-height: 1.25;
-  min-width: 272px;
+  max-width: 272px;
   color: #0c0909;
   border-radius: 4px;
   font-weight: 700;
@@ -77,6 +77,11 @@ header {
   header .button .signup {
     background-color: #0c0909;
     color: aliceblue; }
+  header .logoutform {
+    all: unset; }
+    header .logoutform .logout {
+      background-color: #0c0909;
+      color: aliceblue; }
 
 footer {
   width: 100%;

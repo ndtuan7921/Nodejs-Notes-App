@@ -1,4 +1,4 @@
-<header class="">
+<header>
     <a class="logo" href="/">Notes</a>
     <ul class="">
         <li><a href="/">Home</a></li>
@@ -7,7 +7,7 @@
         <li><a href="/about">About</a></li>
     </ul>
 
-    <div class="button">
-        <a class="logout note-btn" href="/logout" type="button">Log out</a>
-    </div>
+    <form class="button logoutform" action="/logout" method="POST">
+        <button class="logout note-btn" type="submit">Log out</button>
+    </form>
 </header>
